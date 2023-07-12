@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document("BTC")
+@Document(collection = "BTC")
 @Data
 @Builder
 @AllArgsConstructor

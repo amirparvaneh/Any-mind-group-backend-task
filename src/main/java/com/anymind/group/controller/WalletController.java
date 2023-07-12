@@ -1,6 +1,7 @@
 package com.anymind.group.controller;
 
 
+import com.anymind.group.dto.BtcNewRequestDto;
 import com.anymind.group.model.BTC;
 import com.anymind.group.service.WalletService;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,11 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveBtc(@RequestParam BTC btc){
+    public ResponseEntity<String> saveBtc(@RequestParam BtcNewRequestDto btcNewRequestDto){
+        BTC btc = BTC.builder()
+                .amount(btcNewRequestDto.getAmount())
+                .dateTime(btcNewRequestDto.getDateTime())
+                .build();
         walletService.saveBtc(btc);
         return ResponseEntity.ok("saved!");
     }
