@@ -2,7 +2,6 @@ package com.anymind.group.controller;
 
 
 import com.anymind.group.model.BTC;
-import com.anymind.group.repository.BtcRepo;
 import com.anymind.group.service.WalletService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wallet")
+@RequestMapping(value = "/wallet")
 public class WalletController {
 
     private final WalletService walletService;
