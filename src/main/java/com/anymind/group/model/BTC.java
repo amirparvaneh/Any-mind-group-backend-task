@@ -16,9 +16,8 @@ import java.util.Date;
 public class BTC {
 
     @Id
-    private Long id;
     @Indexed(unique = true)
-    private String btc;
+    private String id;
     private Date dateTime;
     private Long amount;
 }
