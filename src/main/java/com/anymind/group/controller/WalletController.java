@@ -22,7 +22,7 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveBtc(@RequestParam BtcNewRequestDto btcNewRequestDto){
+    public ResponseEntity<String> saveBtc(@RequestBody BtcNewRequestDto btcNewRequestDto){
         BTC btc = BTC.builder()
                 .amount(btcNewRequestDto.getAmount())
                 .dateTime(btcNewRequestDto.getDateTime())
