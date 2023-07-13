@@ -31,14 +31,14 @@ public class WalletController {
         return ResponseEntity.ok("saved!");
     }
 
-    @GetMapping
+    @GetMapping(value = "/history")
     public ResponseEntity<List<BtcResponseDto>> getWalletHistory(@RequestParam Date startDateTime,
                                                            @RequestParam Date endDateTime){
         List<BtcResponseDto> btcListByTime = walletService.getBtcByTime(startDateTime, endDateTime);
         return ResponseEntity.ok(btcListByTime);
     }
 
-    @GetMapping
+    @GetMapping(value = "/all")
     public ResponseEntity<List<BTC>> getAllBtc(){
         List<BTC> allBtc = walletService.getAllBtc();
         return ResponseEntity.ok(allBtc);
