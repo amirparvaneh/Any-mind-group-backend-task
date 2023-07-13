@@ -2,11 +2,13 @@ package com.anymind.group.controller;
 
 
 import com.anymind.group.dto.BtcNewRequestDto;
+import com.anymind.group.dto.BtcResponseDto;
 import com.anymind.group.model.BTC;
 import com.anymind.group.service.WalletService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,12 @@ public class WalletController {
         return ResponseEntity.ok("saved!");
     }
 
+    @GetMapping
+    public ResponseEntity<List<BtcResponseDto>> getWalletHistory(@RequestParam Date startDateTime,
+                                                           @RequestParam Date endDateTime){
+        List<BtcResponseDto> btcListByTime = walletService.getBtcByTime(startDateTime, endDateTime);
+        return ResponseEntity.ok(btcListByTime);
+    }
 
     @GetMapping
     public ResponseEntity<List<BTC>> getAllBtc(){
