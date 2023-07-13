@@ -5,8 +5,8 @@ import com.anymind.group.model.BTC;
 import com.anymind.group.repository.BtcRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class WalletService {
@@ -35,5 +35,26 @@ public class WalletService {
                     .amount(btc.getAmount())
                     .date(btc.getDateTime())
                     .build()).toList();
+    }
+
+    public void deleteAll(){
+        btcRepo.deleteAll();
+    }
+
+    private static final Random random = new Random();
+
+    public Date generateRandomDate() {
+        Calendar calendar = new GregorianCalendar();
+
+        // Generate random year between 1900 and 2100
+        int year = random.nextInt(21) + 2010;
+        calendar.set(Calendar.YEAR, year);
+
+        // Generate random day of year
+        int dayOfYear = random.nextInt(calendar.getActualMaximum(Calendar.DAY_OF_YEAR)) + 1;
+        calendar.set(Calendar.DAY_OF_YEAR, dayOfYear);
+
+        // Get the generated date as a Date object
+        return calendar.getTime();
     }
 }

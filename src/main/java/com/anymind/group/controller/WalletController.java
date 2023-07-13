@@ -22,7 +22,11 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveBtc(@RequestBody BtcNewRequestDto btcNewRequestDto){
+    public ResponseEntity<String> saveBtc(@RequestParam Long amount){
+        BtcNewRequestDto btcNewRequestDto = BtcNewRequestDto.builder()
+                .amount(amount)
+                .dateTime(walletService.generateRandomDate())
+                .build();
         BTC btc = BTC.builder()
                 .amount(btcNewRequestDto.getAmount())
                 .dateTime(btcNewRequestDto.getDateTime())
@@ -42,5 +46,12 @@ public class WalletController {
     public ResponseEntity<List<BTC>> getAllBtc(){
         List<BTC> allBtc = walletService.getAllBtc();
         return ResponseEntity.ok(allBtc);
+    }
+
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllBtc(){
+        walletService.deleteAll();
+        return ResponseEntity.ok("deleted all Btc!");
     }
 }
